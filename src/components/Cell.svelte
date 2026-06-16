@@ -4,6 +4,13 @@
 
     let selected = $state(false);
     let { size, x, y } = $props();
+
+    let m = $state({x: 0, y: 0});
+
+    function trackMouse(event) {
+        m.x = event.clientX;
+        m.y = event.clientY;
+    }
     
     const select = () => {
         selected = true;
@@ -21,7 +28,8 @@
     class = {selected ? "bg-taupe-700 border-1 border-taupe-900" : "bg-taupe-950 border-1 border-taupe-900"}
     style:width = "{size}rem"
     style:height = "{size}rem"
+    on:pointermove={trackMouse}
     on:mouseover = {select}
     on:mouseout = {deselect}
-    on:click = {() => handleInput(x, y)}
+    on:click = {() => handleInput(x, y, m.x, m.y)}
 ></div>

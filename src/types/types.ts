@@ -8,9 +8,15 @@ export type line = {
     to: point,
     layer: number,
     width: number,
-    color: string
+    color: string | null
 }
 
 export type t_transitData = {
     lines: line[]
+}
+
+export type t_drawSettings = {
+    width: number,
+    layer: number,
+    color: string | null
 }

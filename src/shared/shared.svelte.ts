@@ -1,4 +1,4 @@
-import type { t_transitData } from "../types/types"
+import type { t_drawSettings, t_transitData } from "../types/types"
 
 export const gridSettings = $state({
     width: 10,
@@ -12,10 +12,17 @@ export const position = $state({
     onGrid: false
 });
 
-export const drawSettings = $state({
+export const drawSettings: t_drawSettings = $state({
     width: 10,
-    layer: 0
+    layer: 0,
+    color: "#ff0000"
 });
+
+export const contextMenuSettings = $state({
+    x: 0,
+    y: 0,
+    show: false
+})
 
 // Transit Data
 
