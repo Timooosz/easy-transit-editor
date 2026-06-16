@@ -1,0 +1,27 @@
+<script lang="ts">
+    import { position } from '../shared/shared.svelte'
+    import { handleInput } from '../lib/transit.svelte';
+
+    let selected = $state(false);
+    let { size, x, y } = $props();
+    
+    const select = () => {
+        selected = true;
+        position.x = x;
+        position.y = y;
+        position.onGrid = true;
+    };
+    const deselect = () => {
+        selected = false;
+        position.onGrid = false;
+    };
+</script>
+
+<div
+    class = {selected ? "bg-taupe-700 border-1 border-taupe-900" : "bg-taupe-950 border-1 border-taupe-900"}
+    style:width = "{size}rem"
+    style:height = "{size}rem"
+    on:mouseover = {select}
+    on:mouseout = {deselect}
+    on:click = {() => handleInput(x, y)}
+></div>
