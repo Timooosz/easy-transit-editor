@@ -1,6 +1,9 @@
 <script lang="ts">
     import StylizedInput from "./StylizedInput.svelte";
+    import ActionSelectorGroup from "./ActionSelectorGroup.svelte";
+
     import ColorPicker from "svelte-awesome-color-picker"
+
     import { gridSettings, drawSettings } from "../shared/shared.svelte";
 </script>
 
@@ -8,6 +11,10 @@
     <div class="flex justify-center">
         <h2 class="text-taupe-200 text-3xl font-bold m-2">easy-transit-editor</h2>
     </div>
+
+    <hr class="my-1 mx-2 text-taupe-700">
+
+    <ActionSelectorGroup />
 
     <hr class="my-1 mx-2 text-taupe-700">
 

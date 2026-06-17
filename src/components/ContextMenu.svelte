@@ -1,7 +1,6 @@
 <script lang="ts">
     import { contextMenuSettings, drawQueue } from "../shared/shared.svelte";
     import { addStation } from "../lib/transit.svelte";
-    import { toPixels } from "../lib/eteMath";
 </script>
 
 {#if contextMenuSettings.show}
@@ -16,6 +15,8 @@
                     contextMenuSettings.show = false;
                 }
             }>New Station</li>
+            <li class="px-4 py-2 text-taupe-200 hover:bg-taupe-700 cursor-pointer">New Text</li>
+            <li class="px-4 py-2 text-taupe-200 hover:bg-taupe-700 cursor-pointer">New Symbol</li>
             <li class="px-4 py-2 text-taupe-200 hover:bg-taupe-700 cursor-pointer" on:click={() => contextMenuSettings.show = false}>Cancel</li>
         </ul>
     </div>

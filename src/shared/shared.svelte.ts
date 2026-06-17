@@ -1,5 +1,10 @@
 import type { t_drawSettings, t_transitData } from "../types/types"
 
+type actionType = "View" | "Draw" | "Edit" | "Delete"
+export const action = $state({
+    action: "View"
+});
+
 export const gridSettings = $state({
     width: 10,
     height: 10,

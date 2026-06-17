@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { position } from '../shared/shared.svelte'
+    import { position, action } from '../shared/shared.svelte'
     import { handleInput } from '../lib/transit.svelte';
 
     let selected = $state(false);
@@ -25,7 +25,8 @@
 </script>
 
 <div
-    class = {selected ? "bg-taupe-700 border-1 border-taupe-900" : "bg-taupe-950 border-1 border-taupe-900"}
+    // selected ? "bg-taupe-700 border-1 border-taupe-900" : "bg-taupe-950 border-1 border-taupe-900"
+    class = "border-taupe-900 {selected ? "bg-taupe-700" : "bg-taupe-950"} {action.action === "View" ? "border-0" : "border-1"}"
     style:width = "{size}rem"
     style:height = "{size}rem"
     on:pointermove={trackMouse}
