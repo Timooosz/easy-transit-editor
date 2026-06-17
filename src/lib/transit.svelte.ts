@@ -31,7 +31,13 @@ const handleDrawInput = (x: number, y: number, mX: number, mY: number) => {
     drawQueue.secondInput = true;
 }
 
-const handleEditInput = (x: number, y: number, mX: number, mY: number) => {
+const handleEditInput = (x: number, y: number) => {
+
+    const colorPickCandidates = transitData.lines.filter((line) => lineIntersects(line, x, y));
+    console.log(colorPickCandidates)
+    if (colorPickCandidates.length === 0) return;
+    const highestLayerLine = colorPickCandidates.sort((a, b) => a.layer - b.layer)[0]
+    drawSettings.color = highestLayerLine.color;
     return;
 }
 
@@ -50,7 +56,7 @@ export const handleInput = (x: number, y: number, mX: number, mY: number) => {
             handleDrawInput(x, y, mX, mY);
             break;
         case("Edit"):
-            handleEditInput(x, y, mX, mY);
+            handleEditInput(x, y);
             break;
         case("Delete"):
             handleDeleteInput(x, y);

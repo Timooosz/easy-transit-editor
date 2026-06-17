@@ -33,5 +33,5 @@
     <StylizedInput label="Line width" value={drawSettings.width} onChange={(x: number) => drawSettings.width = x} />
     <StylizedInput label="Layer" value={drawSettings.layer} onChange={(x: number) => drawSettings.layer = x} />
 
-    <ColorPicker onInput={(event) => drawSettings.color = event.hex} position="responsive"/>
+    <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive"/>
 </div>
