@@ -9,4 +9,8 @@
             <path d="M {toPixels(line.from.x)} {toPixels(line.from.y)} L {toPixels(line.to.x)} {toPixels(line.to.y)}" />
         </g>
     {/each}
+
+    {#each transitData.stations as station}
+        <circle r="10" cx="{toPixels(station.x)}" cy="{toPixels(station.y)}" fill="white" stroke="black" stroke-width="2" />
+    {/each}
 </svg>

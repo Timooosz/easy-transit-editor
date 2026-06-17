@@ -1,9 +1,13 @@
 import { transitData, drawSettings, drawQueue, contextMenuSettings } from "../shared/shared.svelte";
-import type { line } from "../types/types"
+import type { line, station } from "../types/types"
 
 
 const addLine = (line: line) => {
     transitData.lines = [...transitData.lines, line];
+}
+
+export const addStation = (station: station) => {
+    transitData.stations = [...transitData.stations, station];
 }
 
 export const handleInput = (x: number, y: number, mX: number, mY: number) => {

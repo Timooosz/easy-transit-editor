@@ -32,5 +32,6 @@ export const drawQueue = $state({
 })
 
 export const transitData: t_transitData = $state({
-    lines: []
+    lines: [],
+    stations: []
 })

@@ -11,8 +11,14 @@ export type line = {
     color: string | null
 }
 
+export type station = {
+    x: number,
+    y: number
+}
+
 export type t_transitData = {
-    lines: line[]
+    lines: line[],
+    stations: station[]
 }
 
 export type t_drawSettings = {
