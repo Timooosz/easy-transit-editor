@@ -1,6 +1,6 @@
 import { transitData, drawSettings, drawQueue, contextMenuSettings, action, stationMenuSettings } from "../shared/shared.svelte";
 
-import type { line, station } from "../types/types"
+import type { line, station, textField } from "../types/types"
 import { lineIntersects } from "./eteMath";
 
 const addLine = (line: line) => {
@@ -16,6 +16,10 @@ export const editStation = (id: number, updatedData: Partial<Omit<station, 'id'>
     if (index !== -1) {
         transitData.stations[index] = { ...transitData.stations[index], ...updatedData };
     }
+}
+
+export const addTextField = (textField: textField) => {
+    transitData.textFields = [...transitData.textFields, textField];
 }
 
 const handleDrawInput = (x: number, y: number, mX: number, mY: number) => {

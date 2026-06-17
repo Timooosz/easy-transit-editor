@@ -1,6 +1,6 @@
 <script lang="ts">
     import Cell from './Cell.svelte'
-    import { gridSettings } from '../shared/shared.svelte.ts'
+    import { gridSettings } from '../shared/shared.svelte'
 </script>
 
 <div
@@ -8,8 +8,8 @@
     style:display="grid"
     style:grid-template-columns="repeat({gridSettings.width}, auto)"
 >
-    {#each { length: gridSettings.width }, i }
-        {#each { length: gridSettings.height }, j}
+    {#each { length: gridSettings.height }, i }
+        {#each { length: gridSettings.width }, j}
             <Cell size={gridSettings.size} x={j} y={i} />
         {/each}
     {/each}

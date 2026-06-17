@@ -2,6 +2,7 @@
     import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
     import type { line } from "../types/types";
+  import { parseText } from "../lib/textParser";
 
     const isHalfOpacity = (line: line) => {
         return (line.drawPreview && drawQueue.secondInput) ||
@@ -36,5 +37,11 @@
             fill="white" stroke="black"
             stroke-width="{station.borderThickness}"
         />
+    {/each}
+
+    {#each transitData.textFields as textField}
+        <text x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="roboto" dominant-baseline="middle">
+            {@html parseText(textField.text, toPixels(textField.x))}
+        </text>
     {/each}
 </svg>

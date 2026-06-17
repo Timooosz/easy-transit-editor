@@ -23,9 +23,18 @@ export type station = {
     borderThickness: number
 }
 
+export type textField = {
+    id: number,
+    x: number,
+    y: number,
+    rotation: number,
+    text: string
+}
+
 export type t_transitData = {
     lines: line[],
     stations: station[],
+    textFields: textField[],
     previewLine: line | null
 }
 

@@ -52,6 +52,11 @@ export const stationClipboard = $state({
     borderThickness: 2
 });
 
+export const textPromtSettings = $state({
+    show: false,
+    text: ""
+})
+
 // Transit Data
 
 export const drawQueue = $state({
@@ -62,5 +67,6 @@ export const drawQueue = $state({
 export const transitData: t_transitData = $state({
     lines: [],
     stations: [],
+    textFields: [],
     previewLine: null
 })
