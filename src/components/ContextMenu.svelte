@@ -1,6 +1,8 @@
 <script lang="ts">
-    import { contextMenuSettings, drawQueue } from "../shared/shared.svelte";
+    import { contextMenuSettings, defaultStationSettings, drawQueue } from "../shared/shared.svelte";
     import { addStation } from "../lib/transit.svelte";
+
+    let currentId = 0;
 </script>
 
 {#if contextMenuSettings.show}
@@ -11,7 +13,13 @@
     >
         <ul class="py-1">
             <li class="px-4 py-2 text-taupe-200 hover:bg-taupe-700 cursor-pointer" on:click={() => {
-                    addStation({x: drawQueue.pointQueue.x, y: drawQueue.pointQueue.y});
+                    addStation({id: currentId,
+                        x: drawQueue.pointQueue.x, y: drawQueue.pointQueue.y,
+                        width: defaultStationSettings.width, height: defaultStationSettings.height,
+                        thickness: defaultStationSettings.thickness, borderThickness: defaultStationSettings.borderThickness,
+                        roundness: defaultStationSettings.roundness}
+                    );
+                    currentId++;
                     contextMenuSettings.show = false;
                 }
             }>New Station</li>

@@ -29,6 +29,12 @@
     {/each}
 
     {#each transitData.stations as station}
-        <circle r="10" cx="{toPixels(station.x)}" cy="{toPixels(station.y)}" fill="white" stroke="black" stroke-width="2" />
+        <rect
+            width="{toPixels(station.width - 1, false) + station.thickness}" height="{toPixels(station.height - 1, false) + station.thickness}"
+            x="{toPixels(station.x) - station.thickness / 2}" y="{toPixels(station.y) - station.thickness / 2}"
+            rx="{station.thickness * station.roundness / 200}" ry="{station.thickness * station.roundness / 200}"
+            fill="white" stroke="black"
+            stroke-width="{station.borderThickness}"
+        />
     {/each}
 </svg>

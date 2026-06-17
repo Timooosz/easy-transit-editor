@@ -1,9 +1,9 @@
 import { gridSettings } from "../shared/shared.svelte";
 import type { line } from "../types/types";
 
-export const toPixels = (x: number) => {
+export const toPixels = (x: any, withOffset: boolean = true) => {
     const remToPx = 16;
-    const offset = remToPx * gridSettings.size / 2;
+    const offset = withOffset ? (remToPx * gridSettings.size / 2) : 0;
     const conversionRate = remToPx * gridSettings.size;
     return offset + x * conversionRate;
 }

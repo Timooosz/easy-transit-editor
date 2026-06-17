@@ -1,4 +1,4 @@
-import { transitData, drawSettings, drawQueue, contextMenuSettings, action } from "../shared/shared.svelte";
+import { transitData, drawSettings, drawQueue, contextMenuSettings, action, stationMenuSettings } from "../shared/shared.svelte";
 
 import type { line, station } from "../types/types"
 import { lineIntersects } from "./eteMath";
@@ -9,6 +9,13 @@ const addLine = (line: line) => {
 
 export const addStation = (station: station) => {
     transitData.stations = [...transitData.stations, station];
+}
+
+export const editStation = (id: number, updatedData: Partial<Omit<station, 'id'>>) => {
+    const index = transitData.stations.findIndex(s => s.id === id);
+    if (index !== -1) {
+        transitData.stations[index] = { ...transitData.stations[index], ...updatedData };
+    }
 }
 
 const handleDrawInput = (x: number, y: number, mX: number, mY: number) => {
@@ -31,7 +38,16 @@ const handleDrawInput = (x: number, y: number, mX: number, mY: number) => {
     drawQueue.secondInput = true;
 }
 
-const handleEditInput = (x: number, y: number) => {
+const handleEditInput = (x: number, y: number, mX: number, mY: number) => {
+    const stationCandidates = transitData.stations.filter((station) => station.x === x && station.y === y);
+    if (stationCandidates.length > 0) {
+        const stationCandidate = stationCandidates[0];
+        stationMenuSettings.x = mX;
+        stationMenuSettings.y = mY;
+        stationMenuSettings.id = stationCandidate.id;
+        stationMenuSettings.show = true;
+        return;
+    }
 
     const colorPickCandidates = transitData.lines.filter((line) => lineIntersects(line, x, y));
     console.log(colorPickCandidates)
@@ -56,7 +72,7 @@ export const handleInput = (x: number, y: number, mX: number, mY: number) => {
             handleDrawInput(x, y, mX, mY);
             break;
         case("Edit"):
-            handleEditInput(x, y);
+            handleEditInput(x, y, mX, mY);
             break;
         case("Delete"):
             handleDeleteInput(x, y);

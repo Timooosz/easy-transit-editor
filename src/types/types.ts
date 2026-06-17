@@ -13,8 +13,14 @@ export type line = {
 }
 
 export type station = {
+    id: number,
     x: number,
-    y: number
+    y: number,
+    width: number,
+    height: number,
+    thickness: number,
+    roundness: number,
+    borderThickness: number
 }
 
 export type t_transitData = {

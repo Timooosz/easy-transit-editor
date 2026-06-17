@@ -27,7 +27,30 @@ export const contextMenuSettings = $state({
     x: 0,
     y: 0,
     show: false
-})
+});
+
+export const stationMenuSettings = $state({
+    x: 0,
+    y: 0,
+    show: false,
+    id: 0
+});
+
+export const defaultStationSettings = $state({
+    width: 1,
+    height: 1,
+    thickness: 20,
+    roundness: 50,
+    borderThickness: 2
+});
+
+export const stationClipboard = $state({
+    width: 1,
+    height: 1,
+    thickness: 20,
+    roundness: 50,
+    borderThickness: 2
+});
 
 // Transit Data
 

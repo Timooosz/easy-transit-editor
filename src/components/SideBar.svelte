@@ -20,17 +20,17 @@
 
     <h3 class="text-taupe-200 text-xl font-bold m-2">Grid Settings</h3>
 
-    <StylizedInput label="Grid Size" value={gridSettings.size} onChange={(x: number) => gridSettings.size = x} />
+    <StylizedInput label="Grid Size" value={gridSettings.size} onChange={(x: number) => gridSettings.size = x} min={1} />
     <div class="flex flex-row">
-        <StylizedInput label="Width" value={gridSettings.width} onChange={(x: number) => gridSettings.width = x} />
-        <StylizedInput label="Height" value={gridSettings.height} onChange={(x: number) => gridSettings.height = x} />
+        <StylizedInput label="Width" value={gridSettings.width} onChange={(x: number) => gridSettings.width = x} min={1} />
+        <StylizedInput label="Height" value={gridSettings.height} onChange={(x: number) => gridSettings.height = x} min={1} />
     </div>
 
     <hr class="m-4 text-taupe-700">
 
     <h3 class="text-taupe-200 text-xl font-bold m-2">Line Settings</h3>
 
-    <StylizedInput label="Line width" value={drawSettings.width} onChange={(x: number) => drawSettings.width = x} />
+    <StylizedInput label="Line width" value={drawSettings.width} onChange={(x: number) => drawSettings.width = x} min={1} />
     <StylizedInput label="Layer" value={drawSettings.layer} onChange={(x: number) => drawSettings.layer = x} />
 
     <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive"/>

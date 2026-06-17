@@ -4,6 +4,7 @@
   import Footer from "./components/Footer.svelte";
   import Transit from "./components/Transit.svelte";
   import ContextMenu from "./components/ContextMenu.svelte";
+  import StationMenu from "./components/StationMenu.svelte";
 </script>
 
 <div class="flex flex-col w-screen h-screen">
@@ -19,4 +20,5 @@
   <Footer />
 
   <ContextMenu />
+  <StationMenu />
 </div>
