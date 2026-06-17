@@ -8,7 +8,8 @@ export type line = {
     to: point,
     layer: number,
     width: number,
-    color: string | null
+    color: string | null,
+    drawPreview: boolean
 }
 
 export type station = {
@@ -18,7 +19,8 @@ export type station = {
 
 export type t_transitData = {
     lines: line[],
-    stations: station[]
+    stations: station[],
+    previewLine: line | null
 }
 
 export type t_drawSettings = {

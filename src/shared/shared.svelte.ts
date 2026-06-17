@@ -1,7 +1,7 @@
 import type { t_drawSettings, t_transitData } from "../types/types"
 
 type actionType = "View" | "Draw" | "Edit" | "Delete"
-export const action = $state({
+export const action = $state<{ action: actionType }>({
     action: "View"
 });
 
@@ -38,5 +38,6 @@ export const drawQueue = $state({
 
 export const transitData: t_transitData = $state({
     lines: [],
-    stations: []
+    stations: [],
+    previewLine: null
 })

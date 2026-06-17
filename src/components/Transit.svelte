@@ -1,11 +1,23 @@
 <script lang="ts">
-    import { position, gridSettings, transitData, action } from "../shared/shared.svelte";
+    import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
+    import type { line } from "../types/types";
+
+    const isHalfOpacity = (line: line) => {
+        return (line.drawPreview && drawQueue.secondInput) ||
+               ( action.action == "Delete" && position.onGrid && lineIntersects(line, position.x, position.y));
+    }
+
+    const linesToDraw = $derived((
+        transitData.previewLine === null || !drawQueue.secondInput
+        ? [...transitData.lines]
+        : [...transitData.lines, transitData.previewLine]
+    ).sort((a, b) => a.layer - b.layer))
 </script>
 
 <svg class="absolute inset-0 w-full h-full" style:pointer-events="none">
-    {#each transitData.lines.sort((a, b) => a.layer - b.layer) as line}
-        {#if (action.action == "Delete" && position.onGrid && lineIntersects(line, position.x, position.y))}
+    {#each linesToDraw as line}
+        {#if isHalfOpacity(line)}
             <g fill="none" stroke={halfOpacity(line.color)} stroke-width="{line.width}" stroke-linecap="round">
                 <path d="M {toPixels(line.from.x)} {toPixels(line.from.y)} L {toPixels(line.to.x)} {toPixels(line.to.y)}" />
             </g>

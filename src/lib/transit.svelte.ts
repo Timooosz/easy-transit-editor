@@ -23,7 +23,8 @@ const handleDrawInput = (x: number, y: number, mX: number, mY: number) => {
             return;
         }
 
-        addLine({from: drawQueue.pointQueue, to: {x, y}, layer: drawSettings.layer, color: drawSettings.color, width: drawSettings.width})
+        addLine({from: drawQueue.pointQueue, to: {x, y}, layer: drawSettings.layer, color: drawSettings.color, width: drawSettings.width, drawPreview: false})
+        transitData.previewLine = null;
         return;
     }
     drawQueue.pointQueue = {x, y};
@@ -55,4 +56,12 @@ export const handleInput = (x: number, y: number, mX: number, mY: number) => {
             handleDeleteInput(x, y);
             break;
     }
+}
+
+export const updatePreview = (x: number, y: number) => {
+    if (drawQueue.secondInput) {
+        transitData.previewLine = {from: drawQueue.pointQueue, to: {x, y}, layer: drawSettings.layer, color: drawSettings.color, width: drawSettings.width, drawPreview: true}
+        return;
+    }
+    transitData.previewLine = null;
 }

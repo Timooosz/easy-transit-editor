@@ -1,6 +1,6 @@
 <script lang="ts">
     import { position, action } from '../shared/shared.svelte'
-    import { handleInput } from '../lib/transit.svelte';
+    import { handleInput, updatePreview } from '../lib/transit.svelte';
 
     let selected = $state(false);
     let { size, x, y } = $props();
@@ -17,6 +17,7 @@
         position.x = x;
         position.y = y;
         position.onGrid = true;
+        updatePreview(x, y);
     };
     const deselect = () => {
         selected = false;
