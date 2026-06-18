@@ -1,9 +1,7 @@
 <script lang="ts">
     import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
-    import type { line, textField } from "../types/types";
-    import { TokenError } from "../types/exceptions";
-    import { parseText } from "../lib/textParser";
+    import type { line } from "../types/types";
 
     const isHalfOpacity = (line: line) => {
         return (line.drawPreview && drawQueue.secondInput) ||
@@ -16,19 +14,24 @@
         : [...transitData.lines, transitData.previewLine]
     ).sort((a, b) => a.layer - b.layer))
 
-    const getTSpans = (textField: textField) => {
-        let tSpans = "";
-        try{tSpans = parseText(textField.text, toPixels(textField.x))}
-        catch(e) {
-            if (e instanceof TokenError) {
-                tSpans = `<tspan fill="red">Invalid Text</tspan>`
-            } else {
-                throw e;
-            }
+    let textElements: (SVGTextElement | undefined)[] = [];
+
+    const updateBBox = (index: number, element: SVGTextElement | null) => {
+        if (element) {
+            const bbox = element.getBBox();
+
+            transitData.textFields[index].bgBasePos = { x: bbox.x, y: bbox.y };
+            transitData.textFields[index].bgBaseSize = { x: bbox.width, y: bbox.height };
         }
-        
-        return tSpans;
     }
+
+    $effect(() => {
+        transitData.textFields.forEach((_, index) => {
+            if (textElements[index]) {
+                updateBBox(index, textElements[index]);
+            }
+        });
+    });
 </script>
 
 <svg class="absolute inset-0 w-full h-full" style:pointer-events="none">
@@ -54,9 +57,14 @@
         />
     {/each}
 
-    {#each transitData.textFields as textField}
-        <text x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle">
-            {@html getTSpans(textField)}
+    {#each transitData.textFields as textField, index}
+
+        {#if textField.bg}
+            <rect width="{textField.bgBaseSize.x + 2 * textField.bgWidth}" height="{textField.bgBaseSize.y + 2 * textField.bgHeight}" x="{textField.bgBasePos.x - textField.bgWidth}" y="{textField.bgBasePos.y - textField.bgHeight}" fill="{textField.bgColor}" rx="{textField.bgBaseSize.x * textField.bgRoundness.x / 200}" ry="{textField.bgBaseSize.y * textField.bgRoundness.y / 200}" />
+        {/if}
+
+        <text bind:this={textElements[index]} x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle">
+            {@html textField.text}
         </text>
     {/each}
 </svg>

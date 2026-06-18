@@ -1,18 +1,41 @@
 <script lang="ts">
+    import { toPixels } from "../lib/eteMath";
+    import { parseText } from "../lib/textParser";
     import { addTextField } from "../lib/transit.svelte";
     import { drawQueue, textPromtSettings } from "../shared/shared.svelte";
+    import { TokenError } from "../types/exceptions";
 
     let currentId = 1;
 
+    const getTSpans = (text: string, x: number) => {
+        let tSpans = "";
+        try{tSpans = parseText(text, toPixels(x))}
+        catch(e) {
+            if (e instanceof TokenError) {
+                tSpans = `<tspan fill="red">Invalid Text</tspan>`
+            } else {
+                throw e;
+            }
+        }
+        return tSpans;
+    }
+
     const submitPrompt = () => {
-        addTextField({
+        const textField = {
             id: currentId,
             x: drawQueue.pointQueue.x, y: drawQueue.pointQueue.y,
             rotation: 0,
-            text: textPromtSettings.text
-        })
+            text: getTSpans(textPromtSettings.text, drawQueue.pointQueue.x),
+            bg: false,
+            bgBasePos: {x: 0, y: 0},
+            bgBaseSize: {x: 0, y: 0},
+            bgWidth: 10,
+            bgHeight: 0,
+            bgColor: "#ff0000",
+            bgRoundness: {x: 0, y: 100}
+        };
+        addTextField(textField);
         currentId++;
-        console.log(textPromtSettings.text);
         textPromtSettings.show = false;
     }
 </script>
