@@ -63,7 +63,7 @@
             <rect width="{textField.bgBaseSize.x + 2 * textField.bgWidth}" height="{textField.bgBaseSize.y + 2 * textField.bgHeight}" x="{textField.bgBasePos.x - textField.bgWidth}" y="{textField.bgBasePos.y - textField.bgHeight}" fill="{textField.bgColor}" rx="{textField.bgBaseSize.x * textField.bgRoundness.x / 200}" ry="{textField.bgBaseSize.y * textField.bgRoundness.y / 200}" />
         {/if}
 
-        <text bind:this={textElements[index]} x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle">
+        <text bind:this={textElements[index]} x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle" text-anchor={textField.alignment}>
             {@html textField.text}
         </text>
     {/each}

@@ -2,7 +2,7 @@
     import { toPixels } from "../lib/eteMath";
     import { parseText } from "../lib/textParser";
     import { addTextField } from "../lib/transit.svelte";
-    import { drawQueue, textPromtSettings } from "../shared/shared.svelte";
+    import { defaultTextFieldSettings, drawQueue, textPromtSettings } from "../shared/shared.svelte";
     import { TokenError } from "../types/exceptions";
 
     let currentId = 1;
@@ -24,15 +24,16 @@
         const textField = {
             id: currentId,
             x: drawQueue.pointQueue.x, y: drawQueue.pointQueue.y,
-            rotation: 0,
+            rotation: defaultTextFieldSettings.rotation,
             text: getTSpans(textPromtSettings.text, drawQueue.pointQueue.x),
-            bg: false,
+            bg: defaultTextFieldSettings.bg,
             bgBasePos: {x: 0, y: 0},
             bgBaseSize: {x: 0, y: 0},
-            bgWidth: 10,
-            bgHeight: 0,
-            bgColor: "#ff0000",
-            bgRoundness: {x: 0, y: 100}
+            bgWidth: defaultTextFieldSettings.bgWidth,
+            bgHeight: defaultTextFieldSettings.bgHeight,
+            bgColor: defaultTextFieldSettings.bgColor,
+            bgRoundness: defaultTextFieldSettings.bgRoundness,
+            alignment: defaultTextFieldSettings.alignment
         };
         addTextField(textField);
         currentId++;

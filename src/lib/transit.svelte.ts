@@ -1,4 +1,4 @@
-import { transitData, drawSettings, drawQueue, contextMenuSettings, action, stationMenuSettings } from "../shared/shared.svelte";
+import { transitData, drawSettings, drawQueue, contextMenuSettings, action, stationMenuSettings, textFieldMenuSettings } from "../shared/shared.svelte";
 
 import type { line, station, textField } from "../types/types"
 import { lineIntersects } from "./eteMath";
@@ -15,6 +15,13 @@ export const editStation = (id: number, updatedData: Partial<Omit<station, 'id'>
     const index = transitData.stations.findIndex(s => s.id === id);
     if (index !== -1) {
         transitData.stations[index] = { ...transitData.stations[index], ...updatedData };
+    }
+}
+
+export const editTextField = (id: number, updatedData: Partial<Omit<textField, 'id'>>) => {
+    const index = transitData.textFields.findIndex(s => s.id === id);
+    if (index !== -1) {
+        transitData.textFields[index] = { ...transitData.textFields[index], ...updatedData };
     }
 }
 
@@ -50,6 +57,16 @@ const handleEditInput = (x: number, y: number, mX: number, mY: number) => {
         stationMenuSettings.y = mY;
         stationMenuSettings.id = stationCandidate.id;
         stationMenuSettings.show = true;
+        return;
+    }
+
+    const textFieldCandidates = transitData.textFields.filter((textField) => textField.x === x && textField.y === y);
+    if (textFieldCandidates.length > 0) {
+        const textFieldCandidate = textFieldCandidates[0];
+        textFieldMenuSettings.x = mX;
+        textFieldMenuSettings.y = mY;
+        textFieldMenuSettings.id = textFieldCandidate.id;
+        textFieldMenuSettings.show = true;
         return;
     }
 

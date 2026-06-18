@@ -52,6 +52,33 @@ export const stationClipboard = $state({
     borderThickness: 2
 });
 
+export const textFieldMenuSettings = $state({
+    x: 0,
+    y: 0,
+    show: false,
+    id: 0
+});
+
+export const defaultTextFieldSettings = $state({
+    rotation: 0,
+    bgWidth: 5,
+    bgHeight: 5,
+    bg: false,
+    bgColor: "#ff0000",
+    bgRoundness: {x: 50, y: 50},
+    alignment: "start"
+});
+
+export const textFieldClipboard = $state({
+    rotation: 0,
+    bgWidth: 5,
+    bgHeight: 5,
+    bg: false,
+    bgColor: "#ff0000",
+    bgRoundness: {x: 50, y: 50},
+    alignment: "start"
+});
+
 export const textPromtSettings = $state({
     show: false,
     text: ""

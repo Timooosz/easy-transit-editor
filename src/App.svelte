@@ -6,6 +6,7 @@
   import ContextMenu from "./components/ContextMenu.svelte";
   import StationMenu from "./components/StationMenu.svelte";
   import TextPrompt from "./components/TextPrompt.svelte";
+  import TextFieldMenu from "./components/TextFieldMenu.svelte";
 </script>
 
 <div class="flex flex-col w-screen h-screen">
@@ -22,5 +23,6 @@
 
   <ContextMenu />
   <StationMenu />
+  <TextFieldMenu />
   <TextPrompt />
 </div>

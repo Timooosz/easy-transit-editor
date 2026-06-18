@@ -35,7 +35,8 @@ export type textField = {
     bgWidth: number,
     bgHeight: number,
     bgColor: string,
-    bgRoundness: point
+    bgRoundness: point,
+    alignment: string
 }
 
 export type t_transitData = {

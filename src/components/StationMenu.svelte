@@ -56,14 +56,14 @@
             <StylizedInputSlider label="Roundness" value={currentSettings?.roundness} onChange={(x: number) => {update({roundness: x})}} />
 
             <div class="flex flex-row justify-evenly">
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" on:click={copySettings}>Copy Settings</button>
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" on:click={pasteSettings}>Paste Settings</button>
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" on:click={setAsDefault}>Set As Default</button>
+                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={copySettings}>Copy Settings</button>
+                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={pasteSettings}>Paste Settings</button>
+                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={setAsDefault}>Set As Default</button>
             </div>
         </div>
     </div>
     <div 
         class="fixed inset-0"
-        on:click={() => stationMenuSettings.show = false}
+        onclick={() => stationMenuSettings.show = false}
     ></div>
 {/if}
