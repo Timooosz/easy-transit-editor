@@ -28,10 +28,10 @@
     ];
 
     const tooltips = {
-        "View": "Take a look at your beautiful creation",
-        "Draw": "Click on a cell to start drawing a line. Click on another to draw the line. Click on the same cell to draw a station/text/icon",
-        "Edit": "Click on a line to copy its color. Click on a station/text to edit it",
-        "Delete": "Click on an element to delete it"
+        "View": "Take a look at your beautiful creation!",
+        "Draw": "Click on a cell to start drawing a line. Click on another to draw the line. Click on the same cell to draw a station/text/icon.",
+        "Edit": "Click on a line to copy its color. Click on the origin of a station/text to edit it.",
+        "Delete": "Click on an element to delete it. Stations and texts are deleted on their origin position."
     } as const;
 </script>
 

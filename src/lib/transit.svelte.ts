@@ -68,6 +68,9 @@ const handleDeleteInput = (x: number, y: number) => {
     transitData.stations = transitData.stations.filter((station) => {
         return station.x != x || station.y != y;
     });
+    transitData.textFields = transitData.textFields.filter((textField) => {
+        return textField.x != x || textField.y != y;
+    });
 }
 
 export const handleInput = (x: number, y: number, mX: number, mY: number) => {

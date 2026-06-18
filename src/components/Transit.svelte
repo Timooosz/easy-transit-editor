@@ -40,7 +40,7 @@
     {/each}
 
     {#each transitData.textFields as textField}
-        <text x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="roboto" dominant-baseline="middle">
+        <text x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle">
             {@html parseText(textField.text, toPixels(textField.x))}
         </text>
     {/each}
