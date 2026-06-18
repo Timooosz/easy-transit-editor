@@ -1,8 +1,9 @@
 <script lang="ts">
     import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
-    import type { line } from "../types/types";
-  import { parseText } from "../lib/textParser";
+    import type { line, textField } from "../types/types";
+    import { TokenError } from "../types/exceptions";
+    import { parseText } from "../lib/textParser";
 
     const isHalfOpacity = (line: line) => {
         return (line.drawPreview && drawQueue.secondInput) ||
@@ -14,6 +15,20 @@
         ? [...transitData.lines]
         : [...transitData.lines, transitData.previewLine]
     ).sort((a, b) => a.layer - b.layer))
+
+    const getTSpans = (textField: textField) => {
+        let tSpans = "";
+        try{tSpans = parseText(textField.text, toPixels(textField.x))}
+        catch(e) {
+            if (e instanceof TokenError) {
+                tSpans = `<tspan fill="red">Invalid Text</tspan>`
+            } else {
+                throw e;
+            }
+        }
+        
+        return tSpans;
+    }
 </script>
 
 <svg class="absolute inset-0 w-full h-full" style:pointer-events="none">
@@ -41,7 +56,7 @@
 
     {#each transitData.textFields as textField}
         <text x="{toPixels(textField.x)}" y="{toPixels(textField.y)}" fill="white" font-size="20" font-family="calibri" dominant-baseline="middle">
-            {@html parseText(textField.text, toPixels(textField.x))}
+            {@html getTSpans(textField)}
         </text>
     {/each}
 </svg>
