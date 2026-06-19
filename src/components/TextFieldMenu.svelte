@@ -1,11 +1,25 @@
 <script lang="ts">
     import ColorPicker from "svelte-awesome-color-picker";
-import { editTextField } from "../lib/transit.svelte";
+    import { editTextField } from "../lib/transit.svelte";
     import { transitData, textFieldClipboard, textFieldMenuSettings, defaultTextFieldSettings } from "../shared/shared.svelte";
+    import { calculatePosition } from "../lib/bounds";
     import type { textField } from "../types/types";
 
     import StylizedInput from "./StylizedInput.svelte";
     import StylizedInputSlider from "./StylizedInputSlider.svelte";
+
+    import { tick } from "svelte";
+
+    let element: HTMLElement | undefined = $state();
+    let windowPosition = $state({x: textFieldMenuSettings.x, y: textFieldMenuSettings.y})
+
+    $effect(() => {
+        if (element) {
+            tick().then(() => {
+                if (element) windowPosition = calculatePosition(window, textFieldMenuSettings.x, textFieldMenuSettings.y, element.offsetWidth, element.offsetHeight);
+            });
+        }
+    });
     
     const textFieldCandidates = $derived(transitData.textFields.filter((textField) => textField.id === textFieldMenuSettings.id));
     const currentSettings = $derived(textFieldCandidates.length != 0 ? textFieldCandidates[0] : null);
@@ -44,10 +58,10 @@ import { editTextField } from "../lib/transit.svelte";
 </script>
 
 {#if textFieldMenuSettings.show}
-    <div
+    <div bind:this={element}
         class="absolute bg-taupe-800 z-100 p-2"
-        style:left="{textFieldMenuSettings.x}px"
-        style:top="{textFieldMenuSettings.y}px"
+        style:left="{windowPosition.x}px"
+        style:top="{windowPosition.y}px"
     >
         <h2 class="text-xl text-taupe-200">Edit Text</h2>
         <div>

@@ -5,9 +5,14 @@ export const action = $state<{ action: actionType }>({
     action: "View"
 });
 
+export const measurements = $state({
+    sbWidth: 0,
+    fHeight:0
+})
+
 export const gridSettings = $state({
-    width: 10,
-    height: 10,
+    width: 30,
+    height: 30,
     size: 2
 });
 
@@ -28,6 +33,8 @@ export const contextMenuSettings = $state({
     y: 0,
     show: false
 });
+
+// Station Menu
 
 export const stationMenuSettings = $state({
     x: 0,
@@ -51,6 +58,8 @@ export const stationClipboard = $state({
     roundness: 50,
     borderThickness: 2
 });
+
+// Text Settings
 
 export const textFieldMenuSettings = $state({
     x: 0,

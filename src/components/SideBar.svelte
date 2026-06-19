@@ -4,10 +4,19 @@
 
     import ColorPicker from "svelte-awesome-color-picker"
 
-    import { gridSettings, drawSettings } from "../shared/shared.svelte";
+    import { gridSettings, drawSettings, measurements } from "../shared/shared.svelte";
+
+    let element: HTMLElement;
+    $effect(() => {
+        if (element) {
+            const rect = $derived(element.getBoundingClientRect());
+            measurements.sbWidth = rect.width;
+            console.log(measurements.sbWidth);
+        }
+    })
 </script>
 
-<div class="bg-taupe-800">
+<div bind:this={element} class="bg-taupe-800">
     <div class="flex justify-center">
         <h2 class="text-taupe-200 text-3xl font-bold m-2">easy-transit-editor</h2>
     </div>

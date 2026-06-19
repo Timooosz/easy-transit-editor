@@ -1,10 +1,24 @@
 <script lang="ts">
     import { editStation } from "../lib/transit.svelte";
     import { stationMenuSettings, transitData, defaultStationSettings, stationClipboard } from "../shared/shared.svelte";
+    import { calculatePosition } from "../lib/bounds";
     import type { station } from "../types/types";
 
     import StylizedInput from "./StylizedInput.svelte";
     import StylizedInputSlider from "./StylizedInputSlider.svelte";
+
+    import { tick } from "svelte";
+
+    let element: HTMLElement | undefined = $state();
+    let windowPosition = $state({x: stationMenuSettings.x, y: stationMenuSettings.y})
+
+    $effect(() => {
+        if (element) {
+            tick().then(() => {
+                if (element) windowPosition = calculatePosition(window, stationMenuSettings.x, stationMenuSettings.y, element.offsetWidth, element.offsetHeight);
+            });
+        }
+    });
     
     const stationCandidates = $derived(transitData.stations.filter((station) => station.id === stationMenuSettings.id));
     const currentSettings = $derived(stationCandidates.length != 0 ? stationCandidates[0] : null);
@@ -39,10 +53,10 @@
 </script>
 
 {#if stationMenuSettings.show}
-    <div
+    <div bind:this={element}
         class="absolute bg-taupe-800 z-100 p-2"
-        style:left="{stationMenuSettings.x}px"
-        style:top="{stationMenuSettings.y}px"
+        style:left="{windowPosition.x}px"
+        style:top="{windowPosition.y}px"
     >
         <h2 class="text-xl text-taupe-200">Edit Station</h2>
         <div>

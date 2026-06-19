@@ -1,8 +1,17 @@
 <script lang="ts">
-    import { position, drawQueue } from '../shared/shared.svelte';
+    import { position, drawQueue, measurements } from '../shared/shared.svelte';
+
+    let element: HTMLElement;
+    $effect(() => {
+        if (element) {
+            const rect = $derived(element.getBoundingClientRect());
+            measurements.fHeight = rect.height;
+            console.log(measurements.fHeight);
+        }
+    })
 </script>
 
-<div class="bg-taupe-800 flex flex-row py-1">
+<div bind:this={element} class="bg-taupe-800 flex flex-row py-1">
     {#if position.onGrid}
         <p class="text-taupe-200">x: {position.x}, y: {position.y}</p>
     {:else}
