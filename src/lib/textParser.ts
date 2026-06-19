@@ -80,7 +80,7 @@ export const parseText = (text: string, x: number) => {
     const newLineTags = `x="${x}" dy="1em"`;
 
     tokens.forEach(token => {
-        output += `<tspan ${token.newLine ? newLineTags : ""} ${token.textType === "Title" ? `font-weight="bold"` : token.textType === "Subtitle" ? `font-style="italic"` : ""}>${token.text}</tspan>` 
+        output += `<tspan ${token.newLine ? newLineTags : ""} ${token.textType === "Title" ? `font-weight="bold" font-size="26"` : token.textType === "Subtitle" ? `font-style="italic" font-size="16"` : `font-size="20"`}>${token.text}</tspan>` 
     });
 
     console.log(tokens)
