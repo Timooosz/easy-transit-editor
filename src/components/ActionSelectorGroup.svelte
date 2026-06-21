@@ -3,29 +3,7 @@
     import { action } from "../shared/shared.svelte";
 
 
-    type t_actionSelector = {
-        text: string,
-        icon: string
-    }
-
-    const actionSelectors: t_actionSelector[] = [
-        {
-            text: "View",
-            icon: "view-simple-815"
-        },
-        {
-            text: "Draw",
-            icon: "pen-1319"
-        },
-        {
-            text: "Edit",
-            icon: "edit-1479"
-        },
-        {
-            text: "Delete",
-            icon: "delete-1487"
-        }
-    ];
+    const actionSelectors = ["View", "Draw", "Edit", "Delete"];
 
     const tooltips = {
         "View": "Take a look at your beautiful creation!",
@@ -38,7 +16,7 @@
 <div class="mx-2">
     <div class="flex flex-row justify-evenly my-4">
         {#each actionSelectors as actionSelector}
-            <ActionSelector text={actionSelector.text} icon={actionSelector.icon} />
+            <ActionSelector text={actionSelector} />
         {/each}
     </div>
     <p class="wrap-break-words max-w-sm text-taupe-200/80">{tooltips[action.action]}</p>

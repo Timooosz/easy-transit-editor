@@ -6,7 +6,6 @@
         if (element) {
             const rect = $derived(element.getBoundingClientRect());
             measurements.fHeight = rect.height;
-            console.log(measurements.fHeight);
         }
     })
 </script>

@@ -11,7 +11,6 @@
         if (element) {
             const rect = $derived(element.getBoundingClientRect());
             measurements.sbWidth = rect.width;
-            console.log(measurements.sbWidth);
         }
     })
 </script>

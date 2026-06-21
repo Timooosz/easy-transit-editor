@@ -1,7 +1,8 @@
 <script lang="ts">
+    import Icon from "../icons/_Icons.svelte";
     import { action } from "../shared/shared.svelte";
 
-    let { text, icon } = $props();
+    let {text} = $props();
 
     let selected = $derived( action.action === text);
 </script>
@@ -11,6 +12,6 @@
         action.action = text;
     }
 }}>
-    <p>{text}</p>
-    <img src="/{icon}-svgrepo-com.svg" class="w-8 h-8">
+    <p class="mb-2">{text}</p>
+    <Icon selected={text} color="#000000" size={30} />
 </div>
