@@ -1,6 +1,7 @@
 <script lang="ts">
     import ActionSelector from "./ActionSelector.svelte";
     import { action } from "../shared/shared.svelte";
+    import { getCurrentTheme } from "../lib/themes.svelte";
 
 
     const actionSelectors = ["View", "Draw", "Edit", "Delete"];
@@ -19,5 +20,5 @@
             <ActionSelector text={actionSelector} />
         {/each}
     </div>
-    <p class="wrap-break-words max-w-sm text-taupe-200/80">{tooltips[action.action]}</p>
+    <p class="wrap-break-words max-w-sm {getCurrentTheme().text_secondary}">{tooltips[action.action]}</p>
 </div>

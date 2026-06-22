@@ -5,6 +5,8 @@
     import ColorPicker from "svelte-awesome-color-picker"
 
     import { gridSettings, drawSettings, measurements } from "../shared/shared.svelte";
+    import { getCurrentTheme } from "../lib/themes.svelte";
+    import ThemeSelector from "./ThemeSelector.svelte";
 
     let element: HTMLElement;
     $effect(() => {
@@ -15,18 +17,19 @@
     })
 </script>
 
-<div bind:this={element} class="bg-taupe-800">
-    <div class="flex justify-center">
-        <h2 class="text-taupe-200 text-3xl font-bold m-2">easy-transit-editor</h2>
+<div bind:this={element} class="{getCurrentTheme().bg_main}">
+    <div class="flex flex-row justify-center">
+        <h2 class="{getCurrentTheme().text_default} text-3xl font-bold m-2">easy-transit-editor</h2>
+        <ThemeSelector />
     </div>
 
-    <hr class="my-1 mx-2 text-taupe-700">
+    <hr class="my-1 mx-2 {getCurrentTheme().seperator}">
 
     <ActionSelectorGroup />
 
-    <hr class="my-1 mx-2 text-taupe-700">
+    <hr class="my-1 mx-2 {getCurrentTheme().seperator}">
 
-    <h3 class="text-taupe-200 text-xl font-bold m-2">Grid Settings</h3>
+    <h3 class="{getCurrentTheme().text_default} text-xl font-bold m-2">Grid Settings</h3>
 
     <StylizedInput label="Grid Size" value={gridSettings.size} onChange={(x: number) => gridSettings.size = x} min={1} />
     <div class="flex flex-row">
@@ -34,9 +37,9 @@
         <StylizedInput label="Height" value={gridSettings.height} onChange={(x: number) => gridSettings.height = x} min={1} />
     </div>
 
-    <hr class="m-4 text-taupe-700">
+    <hr class="m-4 {getCurrentTheme().seperator}">
 
-    <h3 class="text-taupe-200 text-xl font-bold m-2">Line Settings</h3>
+    <h3 class="{getCurrentTheme().text_default} text-xl font-bold m-2">Line Settings</h3>
 
     <StylizedInput label="Line width" value={drawSettings.width} onChange={(x: number) => drawSettings.width = x} min={1} />
     <StylizedInput label="Layer" value={drawSettings.layer} onChange={(x: number) => drawSettings.layer = x} />

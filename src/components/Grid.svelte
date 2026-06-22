@@ -1,10 +1,11 @@
 <script lang="ts">
     import Cell from './Cell.svelte'
     import { gridSettings } from '../shared/shared.svelte'
+    import { getCurrentTheme } from '../lib/themes.svelte';
 </script>
 
 <div
-    class="w-fit bg-taupe-950"
+    class="w-fit {getCurrentTheme().bg_grid}"
     style:display="grid"
     style:grid-template-columns="repeat({gridSettings.width}, auto)"
 >

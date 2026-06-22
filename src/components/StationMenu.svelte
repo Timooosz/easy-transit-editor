@@ -8,6 +8,7 @@
     import StylizedInputSlider from "./StylizedInputSlider.svelte";
 
     import { tick } from "svelte";
+    import { getCurrentTheme } from "../lib/themes.svelte";
 
     let element: HTMLElement | undefined = $state();
     let windowPosition = $state({x: stationMenuSettings.x, y: stationMenuSettings.y})
@@ -54,11 +55,11 @@
 
 {#if stationMenuSettings.show}
     <div bind:this={element}
-        class="absolute bg-taupe-800 z-100 p-2"
+        class="absolute {getCurrentTheme().bg_main} z-100 p-2"
         style:left="{windowPosition.x}px"
         style:top="{windowPosition.y}px"
     >
-        <h2 class="text-xl text-taupe-200">Edit Station</h2>
+        <h2 class="text-xl {getCurrentTheme().text_default}">Edit Station</h2>
         <div>
             <div class="flex flex-row">
                 <StylizedInput label="Width" value={currentSettings?.width} onChange={(x: number) => {update({width: x})}} min={1} />
@@ -70,9 +71,9 @@
             <StylizedInputSlider label="Roundness" value={currentSettings?.roundness} onChange={(x: number) => {update({roundness: x})}} />
 
             <div class="flex flex-row justify-evenly">
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={copySettings}>Copy Settings</button>
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={pasteSettings}>Paste Settings</button>
-                <button class="m-2 p-2 bg-taupe-700 hover:bg-taupe-600" onclick={setAsDefault}>Set As Default</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={copySettings}>Copy Settings</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={pasteSettings}>Paste Settings</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={setAsDefault}>Set As Default</button>
             </div>
         </div>
     </div>

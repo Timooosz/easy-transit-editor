@@ -2,6 +2,7 @@
     import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
     import type { line } from "../types/types";
+    import { getCurrentTheme } from "../lib/themes.svelte";
 
     const isHalfOpacity = (line: line) => {
         return (line.drawPreview && drawQueue.secondInput) ||
@@ -76,7 +77,7 @@
             <rect width="{textField.bgBaseSize.x + 2 * textField.bgWidth}" height="{textField.bgBaseSize.y + 2 * textField.bgHeight}" x="{textField.bgBasePos.x - textField.bgWidth}" y="{textField.bgBasePos.y - textField.bgHeight}" fill="{textField.bgColor}" rx="{textField.bgBaseSize.x * textField.bgRoundness.x / 200}" ry="{textField.bgBaseSize.y * textField.bgRoundness.y / 200}" />
         {/if}
 
-        <text bind:this={textElements[index]} x="{textX(textField.x, textField.alignment)}" y="{toPixels(textField.y)}" fill="white" font-family="calibri" dominant-baseline="middle" text-anchor={textField.alignment}>
+        <text bind:this={textElements[index]} x="{textX(textField.x, textField.alignment)}" y="{toPixels(textField.y)}" fill="{getCurrentTheme().svg_text_transit}" font-family="calibri" dominant-baseline="middle" text-anchor={textField.alignment}>
             {@html textField.text}
         </text>
     {/each}

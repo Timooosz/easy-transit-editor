@@ -7,11 +7,12 @@
   import StationMenu from "./components/StationMenu.svelte";
   import TextPrompt from "./components/TextPrompt.svelte";
   import TextFieldMenu from "./components/TextFieldMenu.svelte";
+    import { getCurrentTheme } from "./lib/themes.svelte";
 </script>
 
 <div class="flex flex-col w-screen h-screen">
   <div class="flex flex-1 overflow-hidden">
-    <div class="flex flex-col flex-1 overflow-auto bg-taupe-900">
+    <div class="flex flex-col flex-1 overflow-auto {getCurrentTheme().bg_main}">
       <div class="m-auto relative">
         <Grid />
         <Transit class="absolute inset-0"/>
