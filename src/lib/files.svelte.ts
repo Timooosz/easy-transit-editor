@@ -59,7 +59,8 @@ export const uploadJsonData = async () => {
           const data = JSON.parse(event.target?.result as string);
           resolve(data);
         } catch (error) {
-          resolve(null); // Mehr implementieren später
+          alert("An error occured uploading the file.");
+          resolve(null);
         }
       };
       fileReader.readAsText(file);
