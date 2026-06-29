@@ -12,7 +12,8 @@ const themes = {
         svg_icon_transit: "#000000",
         svg_text_transit: "black",
         grid_border: "border-taupe-200",
-        seperator: "text-taupe-300"
+        seperator: "text-taupe-300",
+        download_bg: "#ffffff"
     },
     dark: {
         bg_main: "bg-taupe-800",
@@ -27,7 +28,8 @@ const themes = {
         svg_icon_transit: "#ffffff",
         svg_text_transit: "white",
         grid_border: "border-taupe-900",
-        seperator: "text-taupe-700"
+        seperator: "text-taupe-700",
+        download_bg: "#000000"
     }
 }
 

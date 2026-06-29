@@ -4,9 +4,13 @@
 
     import ColorPicker from "svelte-awesome-color-picker"
 
-    import { gridSettings, drawSettings, measurements } from "../shared/shared.svelte";
+    import { gridSettings, drawSettings, measurements, setTransitData, transitSVG } from "../shared/shared.svelte";
     import { getCurrentTheme } from "../lib/themes.svelte";
     import ThemeSelector from "./ThemeSelector.svelte";
+    import FileButton from "./FileButton.svelte";
+    import { downloadJsonData, exportSvgComponent, uploadJsonData } from "../lib/files.svelte";
+    import { transitData } from "../shared/shared.svelte";
+    import type { t_transitData } from "../types/types";
 
     let element: HTMLElement;
     $effect(() => {
@@ -17,7 +21,7 @@
     })
 </script>
 
-<div bind:this={element} class="{getCurrentTheme().bg_main}">
+<div bind:this={element} class="{getCurrentTheme().bg_main} overflow-scroll">
     <div class="flex flex-row justify-center">
         <h2 class="{getCurrentTheme().text_default} text-3xl font-bold m-2">easy-transit-editor</h2>
         <ThemeSelector />
@@ -45,4 +49,17 @@
     <StylizedInput label="Layer" value={drawSettings.layer} onChange={(x: number) => drawSettings.layer = x} />
 
     <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive"/>
+
+    <div class="m-4">
+        <div class="flex flex-row justify-center">
+            <FileButton text="Upload JSON" onclick={async ()=>{
+                const data = await uploadJsonData();
+                if (data) setTransitData(data as t_transitData);
+            }} />
+            <FileButton text="Download JSON" onclick={() => downloadJsonData(transitData)} />
+        </div>
+        <FileButton text="Download SVG" onclick={() => {
+            if (transitSVG.svg) exportSvgComponent(transitSVG.svg)
+        }} />
+    </div>
 </div>

@@ -5,6 +5,7 @@
     import ViewIcon from "../icons/ViewIcon.svelte";
     import SunIcon from "./SunIcon.svelte";
     import MoonIcon from "./MoonIcon.svelte";
+    import FileIcon from "./FileIcon.svelte";
 
     let { selected, size, color } = $props();
 
@@ -14,7 +15,8 @@
         "Edit": EditIcon,
         "View": ViewIcon,
         "Sun": SunIcon,
-        "Moon": MoonIcon
+        "Moon": MoonIcon,
+        "File": FileIcon
     };
 
     const Component = $derived(iconMap[selected]);

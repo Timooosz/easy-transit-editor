@@ -106,3 +106,11 @@ export const transitData: t_transitData = $state({
     textFields: [],
     previewLine: null
 })
+
+export const setTransitData = (data: t_transitData) => {
+    transitData.lines = data.lines;
+    transitData.stations = data.stations;
+    transitData.textFields = data.textFields;
+}
+
+export const transitSVG = $state<{svg: SVGElement | null}>({svg: null});

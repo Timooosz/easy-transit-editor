@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { position, transitData, action, drawQueue } from "../shared/shared.svelte";
+    import { position, transitData, action, drawQueue, transitSVG } from "../shared/shared.svelte";
     import { lineIntersects, toPixels, halfOpacity } from "../lib/eteMath";
     import type { line } from "../types/types";
     import { getCurrentTheme } from "../lib/themes.svelte";
@@ -46,9 +46,10 @@
             }
         });
     });
+
 </script>
 
-<svg class="absolute inset-0 w-full h-full" style:pointer-events="none">
+<svg class="absolute inset-0 w-full h-full" style:pointer-events="none" bind:this={transitSVG.svg}>
     {#each linesToDraw as line}
         {#if isHalfOpacity(line)}
             <g fill="none" stroke={halfOpacity(line.color)} stroke-width="{line.width}" stroke-linecap="round">
