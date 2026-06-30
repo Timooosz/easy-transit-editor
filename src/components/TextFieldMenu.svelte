@@ -9,7 +9,7 @@
     import StylizedInputSlider from "./StylizedInputSlider.svelte";
 
     import { tick } from "svelte";
-    import { getCurrentTheme } from "../lib/themes.svelte";
+    import { getCurrentTheme, getDarkMode } from "../lib/themes.svelte";
 
     let element: HTMLElement | undefined = $state();
     let windowPosition = $state({x: textFieldMenuSettings.x, y: textFieldMenuSettings.y})
@@ -93,7 +93,9 @@
                 <p class="{getCurrentTheme().text_default}">Background</p>
             </div>
 
-            <ColorPicker bind:hex={currentSettings.bgColor} onInput={(event) => {update({bgColor: event.hex ?? "#ff0000"})}} position="responsive" />
+            <div style={getDarkMode() ? "--cp-bg-color: #333; --cp-border-color: white; --cp-text-color: white; --cp-input-color: #555; --cp-button-hover-color: #777" : ""}>
+                <ColorPicker bind:hex={currentSettings.bgColor} onInput={(event) => {update({bgColor: event.hex ?? "#ff0000"})}} position="responsive" />
+            </div>
 
             <div class="flex flex-row">
                 <StylizedInput label="Width" value={currentSettings?.bgWidth} onChange={(x: number) => {update({bgWidth: x})}} />

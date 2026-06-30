@@ -71,9 +71,9 @@
             <StylizedInputSlider label="Roundness" value={currentSettings?.roundness} onChange={(x: number) => {update({roundness: x})}} />
 
             <div class="flex flex-row justify-evenly">
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={copySettings}>Copy Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={pasteSettings}>Paste Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={setAsDefault}>Set As Default</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={copySettings}>Copy Settings</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={pasteSettings}>Paste Settings</button>
+                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={setAsDefault}>Set As Default</button>
             </div>
         </div>
     </div>

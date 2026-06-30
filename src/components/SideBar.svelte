@@ -5,7 +5,7 @@
     import ColorPicker from "svelte-awesome-color-picker"
 
     import { gridSettings, drawSettings, measurements, setTransitData, transitSVG } from "../shared/shared.svelte";
-    import { getCurrentTheme } from "../lib/themes.svelte";
+    import { getCurrentTheme, getDarkMode } from "../lib/themes.svelte";
     import ThemeSelector from "./ThemeSelector.svelte";
     import FileButton from "./FileButton.svelte";
     import { downloadJsonData, exportSvgComponent, uploadJsonData } from "../lib/files.svelte";
@@ -48,7 +48,9 @@
     <StylizedInput label="Line width" value={drawSettings.width} onChange={(x: number) => drawSettings.width = x} min={1} />
     <StylizedInput label="Layer" value={drawSettings.layer} onChange={(x: number) => drawSettings.layer = x} />
 
-    <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive"/>
+    <div style="{getDarkMode() ? "--cp-bg-color: #333; --cp-border-color: white; --cp-text-color: white; --cp-input-color: #555; --cp-button-hover-color: #777" : ""} m-2">
+        <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive" />
+    </div>
 
     <div class="m-4">
         <div class="flex flex-row justify-center">
