@@ -8,7 +8,7 @@
     let selected = $derived( action.action === text);
 </script>
 
-<div class="flex flex-col justify-center items-center {selected ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected} py-2 w-16 cursor-pointer" on:click={() => {
+<div class="flex flex-col justify-center items-center {selected ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected} py-2 w-16 rounded-xl cursor-pointer" on:click={() => {
     if (!selected) {
         action.action = text;
     }

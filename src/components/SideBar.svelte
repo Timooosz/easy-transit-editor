@@ -52,16 +52,28 @@
         <ColorPicker bind:hex={drawSettings.color} onInput={(event) => drawSettings.color = event.hex} position="responsive" />
     </div>
 
+    <hr class="m-4 {getCurrentTheme().seperator}">
+
     <div class="m-4">
         <div class="flex flex-row justify-center">
-            <FileButton text="Upload JSON" onclick={async ()=>{
+            <FileButton text="Upload JSON" type={0} icon="File" onclick={async ()=>{
                 const data = await uploadJsonData();
                 if (data) setTransitData(data as t_transitData);
             }} />
-            <FileButton text="Download JSON" onclick={() => downloadJsonData(transitData)} />
+            <FileButton text="Download JSON" type={0} icon="File" onclick={() => downloadJsonData(transitData)} />
         </div>
-        <FileButton text="Download SVG" onclick={() => {
+        <FileButton text="Download SVG" type={1} icon="File" onclick={() => {
             if (transitSVG.svg) exportSvgComponent(transitSVG.svg)
+        }} />
+        <FileButton text="Clear Map" type={2} icon="Cancel" onclick={() => {
+            if (!confirm("Do you want to clear all map data?")) return;
+            setTransitData({
+                lines: [],
+                stations: [],
+                textFields: [],
+                previewLine: null,
+                watermark: transitData.watermark
+            });
         }} />
     </div>
 </div>

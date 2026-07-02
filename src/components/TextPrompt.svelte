@@ -48,12 +48,12 @@
         on:click={() => textPromtSettings.show = false}
     ></div>
     <div class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-        <div class="{getCurrentTheme().bg_main} p-4 pointer-events-auto flex flex-col">
+        <div class="{getCurrentTheme().bg_main} p-4 pointer-events-auto flex flex-col rounded-xl shadow-xl/20">
             <h2 class="text-xl {getCurrentTheme().text_default} m-2">Enter your text</h2>
-            <textarea class="{getCurrentTheme().bg_secondary} w-md h-32 m-2 p-1 {getCurrentTheme().text_default}" bind:value={textPromtSettings.text}></textarea>
+            <textarea class="{getCurrentTheme().bg_secondary} w-md h-32 m-2 p-2 rounded-xl {getCurrentTheme().text_default}" bind:value={textPromtSettings.text}></textarea>
             <p class="text-sm {getCurrentTheme().text_secondary} m-2">Use *stars* for headings and _underscores_ for subtitles</p>
             <p class="text-sm {getCurrentTheme().text_secondary} m-2">The text display can execute html. Don't submit text you don't understand!</p>
-            <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" on:click={submitPrompt}>Submit</button>
+            <button class="m-2 p-2 {getCurrentTheme().btn_default} rounded-xl" on:click={submitPrompt}>Submit</button>
         </div>
     </div>
 {/if}

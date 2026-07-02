@@ -2,7 +2,7 @@
     import { contextMenuSettings, defaultStationSettings, drawQueue, textPromtSettings } from "../shared/shared.svelte";
     import { addStation } from "../lib/transit.svelte";
     import { calculatePosition } from "../lib/bounds";
-  import { tick } from "svelte";
+    import { tick } from "svelte";
     import { getCurrentTheme } from "../lib/themes.svelte";
 
     let currentId = 1;
@@ -21,12 +21,12 @@
 
 {#if contextMenuSettings.show}
     <div bind:this={element}
-        class="absolute {getCurrentTheme().bg_main} z-50"
+        class="absolute {getCurrentTheme().bg_main} z-50 shadow-xl/20"
         style:left="{windowPosition.x}px"
         style:top="{windowPosition.y}px"
     >
         <ul class="py-1">
-            <li class="px-4 py-2 {getCurrentTheme().text_default} hover:{getCurrentTheme().bg_secondary} cursor-pointer" on:click={() => {
+            <li class="px-4 py-2 {getCurrentTheme().text_default} {getCurrentTheme().cm_hover} cursor-pointer" on:click={() => {
                     addStation({id: currentId,
                         x: drawQueue.pointQueue.x, y: drawQueue.pointQueue.y,
                         width: defaultStationSettings.width, height: defaultStationSettings.height,
@@ -37,13 +37,13 @@
                     contextMenuSettings.show = false;
                 }
             }>New Station</li>
-            <li class="px-4 py-2 {getCurrentTheme().text_default} hover:{getCurrentTheme().bg_secondary} cursor-pointer" on:click={() => {
+            <li class="px-4 py-2 {getCurrentTheme().text_default} {getCurrentTheme().cm_hover} cursor-pointer" on:click={() => {
                 contextMenuSettings.show = false;
                 textPromtSettings.text = "";
                 textPromtSettings.show = true;
             }}>New Text</li>
-            <li class="px-4 py-2 {getCurrentTheme().text_default} hover:{getCurrentTheme().bg_secondary} cursor-pointer">New Symbol</li>
-            <li class="px-4 py-2 {getCurrentTheme().text_default} hover:{getCurrentTheme().bg_secondary} cursor-pointer" on:click={() => contextMenuSettings.show = false}>Cancel</li>
+            <!--<li class="px-4 py-2 {getCurrentTheme().text_default} {getCurrentTheme().cm_hover} cursor-pointer">New Symbol</li>-->
+            <li class="px-4 py-2 {getCurrentTheme().text_default} {getCurrentTheme().cm_hover} cursor-pointer" on:click={() => contextMenuSettings.show = false}>Cancel</li>
         </ul>
     </div>
     <div 

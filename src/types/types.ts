@@ -43,7 +43,8 @@ export type t_transitData = {
     lines: line[],
     stations: station[],
     textFields: textField[],
-    previewLine: line | null
+    previewLine: line | null,
+    watermark: boolean
 }
 
 export type t_drawSettings = {

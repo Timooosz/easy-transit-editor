@@ -104,7 +104,8 @@ export const transitData: t_transitData = $state({
     lines: [],
     stations: [],
     textFields: [],
-    previewLine: null
+    previewLine: null,
+    watermark: true
 })
 
 export const setTransitData = (data: t_transitData) => {

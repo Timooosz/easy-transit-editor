@@ -60,37 +60,37 @@
 
 {#if textFieldMenuSettings.show}
     <div bind:this={element}
-        class="absolute {getCurrentTheme().bg_main} z-100 p-2"
+        class="absolute {getCurrentTheme().bg_main} rounded-xl z-100 p-2 shadow-xl/20"
         style:left="{windowPosition.x}px"
         style:top="{windowPosition.y}px"
     >
         <h2 class="text-xl {getCurrentTheme().text_default}">Edit Text</h2>
-        <div>
+        <div class="my-2">
 
             <div class="flex flex-row gap-2">
             <button 
-                class="p-2 {currentSettings?.alignment === 'start' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
+                class="p-2 rounded-xl {currentSettings?.alignment === 'start' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
                 onclick={() => update({alignment: 'start'})}
             >
                 Left
             </button>
             <button 
-                class="p-2 {currentSettings?.alignment === 'middle' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
+                class="p-2 rounded-xl {currentSettings?.alignment === 'middle' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
                 onclick={() => update({alignment: 'middle'})}
             >
                 Center
             </button>
             <button 
-                class="p-2 {currentSettings?.alignment === 'end' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
+                class="p-2 rounded-xl {currentSettings?.alignment === 'end' ? getCurrentTheme().btn_default_selected : getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}"
                 onclick={() => update({alignment: 'end'})}
             >
                 Right
             </button>
         </div>
 
-            <div class="flex flex-row">
+            <div class="flex flex-row items-center my-2">
                 <input type="checkbox" bind:checked={currentSettings.bg} onchange={() => update({bg: currentSettings.bg})} />
-                <p class="{getCurrentTheme().text_default}">Background</p>
+                <p class="ml-2 {getCurrentTheme().text_default}">Background</p>
             </div>
 
             <div style={getDarkMode() ? "--cp-bg-color: #333; --cp-border-color: white; --cp-text-color: white; --cp-input-color: #555; --cp-button-hover-color: #777" : ""}>
@@ -106,9 +106,9 @@
             <StylizedInputSlider label="Roundness Y" value={currentSettings?.bgRoundness.y} onChange={(x: number) => {update({bgRoundness: {x: currentSettings?.bgRoundness.x ? currentSettings.bgRoundness.x : 0, y: x}})}} />
 
             <div class="flex flex-row justify-evenly">
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={copySettings}>Copy Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={pasteSettings}>Paste Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={setAsDefault}>Set As Default</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={copySettings}>Copy Settings</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={pasteSettings}>Paste Settings</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default} hover:{getCurrentTheme().btn_default_selected}" onclick={setAsDefault}>Set As Default</button>
             </div>
         </div>
     </div>

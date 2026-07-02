@@ -55,7 +55,7 @@
 
 {#if stationMenuSettings.show}
     <div bind:this={element}
-        class="absolute {getCurrentTheme().bg_main} z-100 p-2"
+        class="absolute {getCurrentTheme().bg_main} z-100 p-2 rounded-xl shadow-xl/20"
         style:left="{windowPosition.x}px"
         style:top="{windowPosition.y}px"
     >
@@ -71,9 +71,9 @@
             <StylizedInputSlider label="Roundness" value={currentSettings?.roundness} onChange={(x: number) => {update({roundness: x})}} />
 
             <div class="flex flex-row justify-evenly">
-                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={copySettings}>Copy Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={pasteSettings}>Paste Settings</button>
-                <button class="m-2 p-2 {getCurrentTheme().btn_default}" onclick={setAsDefault}>Set As Default</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default}" onclick={copySettings}>Copy Settings</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default}" onclick={pasteSettings}>Paste Settings</button>
+                <button class="m-2 p-2 rounded-xl {getCurrentTheme().btn_default}" onclick={setAsDefault}>Set As Default</button>
             </div>
         </div>
     </div>
