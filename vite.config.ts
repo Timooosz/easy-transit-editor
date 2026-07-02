@@ -7,4 +7,5 @@ export default defineConfig({
   plugins: [svelte(),
             tailwindcss()
   ],
+  base: "/easy-transit-editor/"
 })
